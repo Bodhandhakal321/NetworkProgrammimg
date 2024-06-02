@@ -1,8 +1,8 @@
 package IpAddresses;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.util.Enumeration;
 
 
 public class InternetAddress_eg {
@@ -74,6 +74,44 @@ public class InternetAddress_eg {
             System.out.println("To HasCode: " + inetAddressEquals1.hashCode());
             System.out.println("To String: " + inetAddressEquals1.toString());
             //slide 34
+
+            //ipv4 ipv6 labbbb
+            InetAddress inet4Address =  Inet4Address.getByName("www.google.com");
+            System.out.println("Inet4Address" +inet4Address);
+
+            InetAddress inet6Address =  Inet6Address.getByName("www.google.com");
+            System.out.println("Inet6Address" +inet6Address);
+
+
+            //NIC newtork identification card
+            NetworkInterface networkInterface = NetworkInterface.getByName("lo");
+            System.out.println("NIC:" + networkInterface);
+
+            NetworkInterface networkInterfaceAddress = NetworkInterface.getByInetAddress(inet4Address);
+            System.out.println("Get By INET:" + networkInterfaceAddress);
+
+            NetworkInterface networkInterface3 = NetworkInterface.getNetworkInterfaces().nextElement();
+            System.out.println("GEt bY INET:" + networkInterface3);
+
+            Enumeration networkInterface4 = NetworkInterface.getNetworkInterfaces();
+            while (networkInterface4.hasMoreElements()){
+                System.out.println("Network Interfaces:" + networkInterface4.nextElement());
+
+            }
+            System.out.println("GEt bY ENumerations:" + networkInterface4);
+
+            Enumeration enumAddress = networkInterface.getInetAddresses();
+            while (enumAddress.hasMoreElements()){
+                System.out.println(enumAddress.nextElement());
+            }
+
+            System.out.println("networkinterface.getname() :" + networkInterface.getName());
+            System.out.println("networkinterface.getDisplayname() :" + networkInterface.getDisplayName());
+
+
+
+
+
 
         }catch (UnknownHostException e){
             throw  new RuntimeException(e);
