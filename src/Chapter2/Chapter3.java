@@ -2,9 +2,7 @@ package Chapter2;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 
 public class Chapter3 {
     public static void main(String[] args) {
@@ -30,8 +28,8 @@ public class Chapter3 {
                 inputStream.close();
 
                 URLConnection urlConnection = url.openConnection();
-                        InputStream inputStream2 = urlConnection.getInputStream();
-                        int d;
+                InputStream inputStream2 = urlConnection.getInputStream();
+                int d;
                 while ((d=inputStream2.read()) != -1){
                     System.out.println(d);
 
@@ -72,6 +70,7 @@ public class Chapter3 {
 
 
 
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -80,4 +79,3 @@ public class Chapter3 {
         }
     }
 }
-
