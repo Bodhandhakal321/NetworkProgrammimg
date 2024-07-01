@@ -92,6 +92,7 @@ public class Chapter6 {
             System.out.println("IS REUSABLE " + socket.getReuseAddress());
 
             //getsettraffic classes
+
             socket.setTrafficClass(128);
             System.out.println("IS Traffic Class ::" + socket.getTrafficClass());
         } catch (IOException e) {
