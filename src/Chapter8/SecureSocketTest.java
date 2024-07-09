@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.Socket;
+import java.util.List;
 
 public class SecureSocketTest {
     public static void main(String[] args) {
@@ -27,20 +28,28 @@ public class SecureSocketTest {
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
             bufferedOutputStream.write(123);
 
-            SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket("login.ibiblio.org",3401);
+//            SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket("login.ibiblio.org",3401);
+            SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket();
 
-            sslSocket.addHandshakeCompletedListener(new HandshakeCompletedListener() {
-                @Override
-                public void handshakeCompleted(HandshakeCompletedEvent handshakeCompletedEvent) {
-                    System.out.println("Handshake Completed");
-                }
-            });
-            sslSocket.removeHandshakeCompletedListener(new HandshakeCompletedListener() {
-                @Override
-                public void handshakeCompleted(HandshakeCompletedEvent handshakeCompletedEvent) {
-                    System.out.println("Handshake Removed");
-                }
-            });
+
+//            sslSocket.addHandshakeCompletedListener(new HandshakeCompletedListener() {
+//                @Override
+//                public void handshakeCompleted(HandshakeCompletedEvent handshakeCompletedEvent) {
+//                    System.out.println("Handshake Completed");
+//                }
+//            });
+//            sslSocket.removeHandshakeCompletedListener(new HandshakeCompletedListener() {
+//                @Override
+//                public void handshakeCompleted(HandshakeCompletedEvent handshakeCompletedEvent) {
+//                    System.out.println("Handshake Removed");
+//                }
+//            });
+            List<String> ciphers= List.of(sslSocket.getSupportedCipherSuites());
+            System.out.println(ciphers);
+
+
+            sslSocket.setUseClientMode(true);
+
 
 
         } catch (IOException e) {
